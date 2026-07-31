@@ -1,82 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Quanto você gastaria com a Mega-Sena?</title>
+    <link rel="icon" href="imagens/icone.png">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            margin: 0;
+        }
+
+        header {
+            background: #00a859;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        #dinheiro {
+            font-size: 25px;
+            background: white;
+            padding: 15px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .item {
+            background: white;
+            width: 250px;
+            margin: 15px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px #aaa;
+            text-align: center;
+        }
+
+        .item img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+
+        .item h2 {
+            font-size: 20px;
+        }
+
+        button {
+            background: #00a859;
+            color: white;
+            border: 0;
+            padding: 12px;
+            margin: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #008044;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Quanto você iria gastar com o prêmio da Mega-Sena?</h1>
+    <p>Você ganhou R$ 35 milhões!</p>
+</header>
+
+<div id="dinheiro">
+    💰 Ainda tem: R$ 35.000.000
+</div>
+
+<div class="container" id="lista"></div>
+
 <script>
 
 let dinheiro = 35000000;
 
 let itens = [
-    {
-        nome:"Casa de luxo",
-        preco:5000000,
-        imagem:"imagens/casa.jpg"
-    },
-    {
-        nome:"Carro Toyota Corolla",
-        preco:180000,
-        imagem:"imagens/carro.jpg"
-    },
-    {
-        nome:"PC Gamer poderoso",
-        preco:15000,
-        imagem:"imagens/pc.jpg"
-    },
-    {
-        nome:"Coca-Cola 2 litros",
-        preco:10,
-        imagem:"imagens/coca.jpg"
-    },
-    {
-        nome:"Pizza brasileira",
-        preco:50,
-        imagem:"imagens/pizza.jpg"
-    },
-    {
-        nome:"Fazenda",
-        preco:3000000,
-        imagem:"imagens/fazenda.jpg"
-    },
-    {
-        nome:"Gato",
-        preco:200,
-        imagem:"imagens/gato.jpg"
-    },
-    {
-        nome:"Coxinha",
-        preco:12,
-        imagem:"imagens/coxinha.jpg"
-    },
-    {
-        nome:"400 robux",
-        preco:28,
-        imagem:"imagens/robux.jpg"
-    },
-    {
-        nome:"minecraft java",
-        preco:99,
-        imagem:"imagens/minecraft1.jpg"
-    },
-    {
-        nome:"minecraft bedrock",
-        preco:10,
-        imagem:"imagens/minecraft2.jpg"
-    }, // <-- Adicionada a vírgula aqui
-    {
-        nome:"cachorro",
-        preco:10,
-        imagem:"imagens/cachorro.jpg"
-    }, // <-- Adicionada a vírgula aqui
-    {
-        nome:"lego do star wars",
-        preco:10,
-        imagem:"imagens/lego_sw.jpg"
-    } // <-- Adicionada a chave de fechamento aqui
+    {nome:"Casa de luxo",preco:5000000,imagem:"imagens/casa.jpg"},
+    {nome:"Carro Toyota Corolla",preco:180000,imagem:"imagens/carro.jpg"},
+    {nome:"PC Gamer poderoso",preco:15000,imagem:"imagens/pc.jpg"},
+    {nome:"Coca-Cola 2 litros",preco:10,imagem:"imagens/coca.jpg"},
+    {nome:"Pizza brasileira",preco:50,imagem:"imagens/pizza.jpg"},
+    {nome:"Fazenda",preco:3000000,imagem:"imagens/fazenda.jpg"},
+    {nome:"Gato",preco:200,imagem:"imagens/gato.jpg"},
+    {nome:"Coxinha",preco:12,imagem:"imagens/coxinha.jpg"},
+    {nome:"400 Robux",preco:28,imagem:"imagens/robux.jpg"},
+    {nome:"Minecraft Java",preco:99,imagem:"imagens/minecraft1.jpg"},
+    {nome:"Minecraft Bedrock",preco:10,imagem:"imagens/minecraft2.jpg"},
+    {nome:"Cachorro",preco:400,imagem:"imagens/cachorro.jpg"},
+    {nome:"LEGO Star Wars",preco:8699,imagem:"imagens/lego_sw.jpg"}
 ];
 
-function atualizar(){
+function atualizar() {
     document.getElementById("dinheiro").innerHTML =
-    "💰 Ainda tem: R$ " + dinheiro.toLocaleString("pt-BR");
+        "💰 Ainda tem: R$ " + dinheiro.toLocaleString("pt-BR");
 }
 
-function comprar(preco){
-    if(dinheiro >= preco){
+function comprar(preco) {
+    if (dinheiro >= preco) {
         dinheiro -= preco;
         atualizar();
     } else {
@@ -84,19 +117,24 @@ function comprar(preco){
     }
 }
 
-let lista=document.getElementById("lista");
+let lista = document.getElementById("lista");
 
-itens.forEach(item=>{
+itens.forEach(item => {
     lista.innerHTML += `
-    <div class="item">
-        <img src="${item.imagem}">
-        <h2>${item.nome}</h2>
-        <p>R$ ${item.preco.toLocaleString("pt-BR")}</p>
-        <button onclick="comprar(${item.preco})">
-            Comprar
-        </button>
-    </div>
+        <div class="item">
+            <img src="${item.imagem}" alt="${item.nome}">
+            <h2>${item.nome}</h2>
+            <p>R$ ${item.preco.toLocaleString("pt-BR")}</p>
+            <button onclick="comprar(${item.preco})">
+                Comprar
+            </button>
+        </div>
     `;
 });
 
+atualizar();
+
 </script>
+
+</body>
+</html>
